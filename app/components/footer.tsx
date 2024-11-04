@@ -14,9 +14,6 @@ export function Footer() {
           </ul>
         </nav>
       </div>
-      <div className="flex-1 flex justify-end">
-          sdassa
-      </div>
     </footer>
   );
 }
