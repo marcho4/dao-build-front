@@ -1,32 +1,27 @@
 "use client"
 
-import {Header} from "@/app/components/header";
-import {Footer} from "@/app/components/footer";
-import {CreationForm} from "@/app/components/createCommunity"
-import { useState } from "react";
+import Link from 'next/link';
+
 
 export default function Home() {
-  const [visibility, setVisibility] = useState(false);
-  
-  const showForm = () => {
-    setVisibility(true);
-    document.body.style.overflow = "hidden"; 
-  }
-  const closeForm = () => {
-    setVisibility(false);
-    document.body.style.overflow = "auto"; 
-  }
-
   return (
-    <>
-    <Header/>
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <button onClick={showForm} className="bg-red-500">Create Community</button>
-        <CreationForm isOpen={visibility} onClose={closeForm}></CreationForm>
+        <div className="flex flex-col mb-20">
+          <div className="text-7xl">WHY US?</div>
+          <div className="text-3xl">Our service is very friendly (especially for crypto bros 😎)</div>
+          <div className="text-3xl">You don&#39;t need to look after your community - everything is on us!</div>
+          <div className="text-3xl">When joining us you support independent devs, not big companies</div>
+        </div>
+        <div className="flex flex-col mb-20">
+          <div className="text-7xl">OUR PLANS</div>
+          <div className="text-3xl">Free Join and 10% revenue share (good for newcomers)</div>
+          <div className="text-3xl">Paid Join for 100$ and 5% revenue share (exclusive plan for big whales 🐳)</div>
+        </div>
+        <div className="flex flex-col items-center justify-center w-full mb-20">
+          <Link href="/login" className="text-7xl hover:underline">BECOME INFLUENCER</Link>
+        </div>
       </main>
     </div>
-    <Footer/>
-    </>
   );
 }
