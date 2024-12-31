@@ -12,7 +12,6 @@ const ConditionalLink = ({ children, loginHandler }) => {
 
         try {
             const loginSuccess = await loginHandler();
-
             if (loginSuccess) {
                 router.push('/dashboard');
             }
