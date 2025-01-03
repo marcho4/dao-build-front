@@ -53,7 +53,7 @@ export default function WalletLogin() {
     }, [wallet, disconnect]);
 
     return (
-        <Card className="w-full max-w-md mx-auto p-6 shadow-lg">
+        <Card className="w-full max-w-md mx-auto p-6 shadow-lg bg-white">
             <div className="flex flex-col items-center gap-6">
                 <h2 className="text-2xl font-bold">
                     {connected ? 'Wallet Connected' : 'Connect Your Wallet'}

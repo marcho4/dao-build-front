@@ -5,14 +5,15 @@ import {CreationForm} from "../components/createCommunity";
 import {useAuth} from "../../contexts/authContext";
 import { CommunityCard } from "../components/card";
 import {LicenseCard} from "../components/licenseCard";
+import {redirect, useRouter} from "next/navigation";
 
 export default function Page() {
     const [visibility, setVisibility] = useState(false);
     const { user, isLoading } = useAuth();
+    const  router  = useRouter();
 
     const [licenses, setLicenses] = useState([]);
     const [communities, setCommunities] = useState([]);
-
 
     const fetchCommunityData = async () => {
         try {
@@ -67,31 +68,31 @@ export default function Page() {
         document.body.style.overflow = "auto";
     }
 
-
     return (
         <div className="flex flex-col justify-center">
             <div className="pt-10 select-none">
-                <div className="text-5xl font-bold mb-20 underline text-center">MEMBERSHIPS</div>
+                <div className="text-5xl  font-bold mb-14 underline text-center">MEMBERSHIPS</div>
             </div>
 
-            <div className="flex flex-col justify-center items-center px-20">
+            <div className="flex flex-col justify-center items-center px-20 mb-14">
                 <div id="memberships-container" className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-y-12 gap-x-20">
                     {licenses.map((licenseItem) => (
                         <LicenseCard
-                            key={licenseItem.name}
+                            key={licenseItem.license}
                             license={licenseItem.license}
                             name={licenseItem.name}
                             imageSrc={`/shelter.jpg`}
                             community={licenseItem.community}
                             invite={licenseItem.invite}
                             expiration={licenseItem.expiration}
+                            onClick={() => router.push(`/dashboard/license/${licenseItem.license}`)}
                         />
                     ))}
                 </div>
             </div>
 
             <div className="pt-10 select-none">
-                <div className="text-5xl font-bold mb-20 underline text-center">OWNERSHIPS</div>
+                <div className="text-5xl font-bold mb-14 underline text-center">OWNERSHIPS</div>
             </div>
             <div className="flex flex-col justify-center items-center px-20">
                 <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-y-12 gap-x-20">
@@ -101,6 +102,7 @@ export default function Page() {
                             title={communityItem.name}
                             description={communityItem.description}
                             imageSrc={communityItem.logo}
+                            onClick={() => router.push(`/dashboard/community/${communityItem.api_name}`)}
                         />
                     ))}
                     <CommunityCard title="Create" description="" imageSrc={`/plus.png`} onClick={showForm}/>
