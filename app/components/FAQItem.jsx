@@ -13,7 +13,7 @@ export const FAQItem = ({question, answer}) => {
     return (
         <div className="w-full flex flex-col items-center justify-center">
             <button
-                className={`bg-[#C9DDFF] text-left font-semibold text-xl ${show ? "rounded-t-2xl" : "rounded-2xl"} min-w-full
+                className={`bg-secondary dark:text-dark-primary text-left font-semibold text-xl ${show ? "rounded-t-2xl" : "rounded-2xl"} min-w-full
                 flex justify-between items-center p-4 mb-0`}
                 onClick={buttonClick}>
 
@@ -30,7 +30,7 @@ export const FAQItem = ({question, answer}) => {
 
             </button>
             {show && (
-                <div className="p-4 mt-0 bg-[#C9DDFF] font-semibold text-left text-xl rounded-b-2xl min-w-full">
+                <div className="p-4 mt-0 bg-[#C9DDFF] dark:text-dark-primary font-semibold text-left text-xl rounded-b-2xl min-w-full">
                     {answer}
                 </div>
             )}

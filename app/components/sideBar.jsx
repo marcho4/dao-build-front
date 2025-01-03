@@ -1,77 +1,120 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import {useAuth} from "@/contexts/authContext";
+import { useAuth } from "@/contexts/authContext";
+import {  X } from 'lucide-react';
 
 const SidebarMenu = ({ isMenuOpen, toggleMenu }) => {
-    const { setUser }= useAuth();
+    const { setUser, user } = useAuth();
+
+    async function logout() {
+        try {
+            const response = await fetch('http://localhost:8080/api/auth/logout', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Logout failed');
+            }
+
+            setUser();
+            toggleMenu();
+            return true;
+        } catch (error) {
+            console.error('Logout error:', error);
+            throw error;
+        }
+    }
+
+    // Управление скроллом при открытом меню
     useEffect(() => {
         if (isMenuOpen) {
-            const scrollY = window.scrollY;
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${scrollY}px`;
-            document.body.style.width = '100%';
+            document.body.style.overflow = 'hidden';
         } else {
-            const scrollY = document.body.style.top;
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            document.body.style.overflow = 'unset';
         }
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
     }, [isMenuOpen]);
 
     return (
         <>
+            {/* Затемнение фона при открытом меню */}
             {isMenuOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-40"
+                    className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
                     onClick={toggleMenu}
                     aria-hidden="true"
                 />
             )}
 
+            {/* Основное меню */}
             <div
-                className={`fixed top-0 left-0 h-full w-1/3 lg:w-64 z-50 bg-white dark:bg-black shadow-lg transform ${
-                    isMenuOpen ? "translate-x-0" : "-translate-x-full"
-                } transition-transform duration-300 ease-in-out flex flex-col justify-between`}
+                className={`fixed top-0 left-0 h-full w-[280px] max-w-[90vw] z-50 
+                           bg-[#F8f8f8] dark:bg-dark-primary shadow-lg 
+                           transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}
+                           transition-transform duration-200 ease-in-out 
+                           flex flex-col overflow-hidden`}
             >
-                <div>
+                {/* Шапка меню с кнопкой закрытия */}
+                <div className="p-4 flex justify-between items-center">
+                    <span className="font-bold text-lg ml-2">Menu</span>
                     <button
-                        className="p-4 w-full flex flex-col space-y-1 focus:outline-none"
                         onClick={toggleMenu}
-                        aria-label="Toggle menu"
+                        className="p-2   rounded-full transition-colors"
+                        aria-label="Close menu"
                     >
-                        <span className="w-6 h-1 bg-black dark:bg-white"></span>
-                        <span className="w-6 h-1 bg-black dark:bg-white"></span>
-                        <span className="w-6 h-1 bg-black dark:bg-white"></span>
+                        <X className="w-6 h-6 dark:text-off-white" />
                     </button>
+                </div>
 
-                    <nav className="pt-6">
+                {/* Навигационные ссылки */}
+                <nav className="flex-1 overflow-y-auto py-4">
+                    <div className="space-y-2 px-4">
                         <Link
+                            href="/"
+                            onClick={toggleMenu}
+                            className="block p-3 rounded-lg font-semibold
+                                     hover:bg-accent hover:text-off-white  transition-colors"
+                        >
+                            Main page
+                        </Link>
+                        {!user ? (<Link
                             href="/login"
                             onClick={toggleMenu}
-                            className="block font-bold ml-10 mb-10 w-full hover:underline"
+                            className="block p-3 rounded-lg font-semibold
+                                     hover:bg-accent hover:text-off-white  transition-colors"
                         >
-                            LOGIN
-                        </Link>
+                            Login
+                        </Link>) : null}
                         <Link
                             href="/dashboard"
                             onClick={toggleMenu}
-                            className="block font-bold mb-10 ml-10 w-full hover:underline"
+                            className="block p-3 rounded-lg font-semibold
+                                     hover:bg-accent hover:text-off-white transition-colors"
                         >
-                            DASHBOARD
+                            Dashboard
                         </Link>
-                    </nav>
-                </div>
+                    </div>
+                </nav>
 
-                <div className="flex m-0">
+                {/* Нижняя панель с кнопкой выхода */}
+                <div className="p-4">
                     <button
                         onClick={() => {
-                            setUser();
-                            toggleMenu();
+                            logout();
                         }}
-                        className="w-full font-bold hover:underline text-right"
+                        className="w-full p-3 text-center font-semibold dark:text-off-white
+                                 hover:bg-accent/50 dark:hover:bg-accent/50
+                                 rounded-lg transition-colors"
                     >
-                        LOG OUT
+                        Log out
                     </button>
                 </div>
             </div>

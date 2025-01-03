@@ -17,6 +17,7 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         checkAuth();
     }, []);
+
     useEffect(() => {
         console.log('User has updated:', user);
     }, [user]);

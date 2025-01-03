@@ -1,11 +1,10 @@
 "use client"
 
-import {useParams, useRouter} from "next/navigation";
+import { useParams } from "next/navigation";
 import {useEffect, useState} from "react";
 import {useAuth} from "../../../../contexts/authContext";
 import Link from "next/link";
-import {CommunityCard} from "../../../components/card";
-import Image from "next/image";
+
 
 export default function Page() {
     const { key} = useParams();
@@ -60,7 +59,7 @@ export default function Page() {
                     </p>
                     <p className="">
                         <span
-                            className="font-semibold">Activated:</span> {licenseData.activated == true ? "True" : "False"}
+                            className="font-semibold">Activated:</span> {licenseData.activated ? "True" : "False"}
                     </p>
                     {licenseData.invite !== "" ? (
                             <p className="">

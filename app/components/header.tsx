@@ -1,18 +1,18 @@
 "use client"
 
 import Link from "next/link";
-import {useState} from "react";
+import { useState } from "react";
 import SidebarMenu from "@/app/components/sideBar";
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     }
 
-
     return (
-        <div className="relative flex items-center justify-center p-4 bg-[#F8F8F8]">
+        <div className="relative flex items-center justify-center p-4 bg-[#F8F8F8] dark:bg-dark-primary">
             {!isMenuOpen && (
                 <button
                     className="absolute left-0 flex flex-col space-y-1 focus:outline-none"
@@ -33,7 +33,6 @@ export const Header = () => {
             <SidebarMenu
                 isMenuOpen={isMenuOpen}
                 toggleMenu={toggleMenu}
-
             />
         </div>
     );

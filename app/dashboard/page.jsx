@@ -5,7 +5,7 @@ import {CreationForm} from "../components/createCommunity";
 import {useAuth} from "../../contexts/authContext";
 import { CommunityCard } from "../components/card";
 import {LicenseCard} from "../components/licenseCard";
-import {redirect, useRouter} from "next/navigation";
+import {useRouter} from "next/navigation";
 
 export default function Page() {
     const [visibility, setVisibility] = useState(false);
@@ -69,12 +69,11 @@ export default function Page() {
     }
 
     return (
-        <div className="flex flex-col justify-center">
-            <div className="pt-10 select-none">
+        <div className="flex flex-col justify-center items-center">
+            <div className="pt-10  select-none max-w-6xl w-full">
                 <div className="text-5xl  font-bold mb-14 underline text-center">MEMBERSHIPS</div>
             </div>
-
-            <div className="flex flex-col justify-center items-center px-20 mb-14">
+            <div className="flex flex-col justify-center items-center px-20 py-10 mb-14 ">
                 <div id="memberships-container" className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-y-12 gap-x-20">
                     {licenses.map((licenseItem) => (
                         <LicenseCard
