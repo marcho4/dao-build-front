@@ -21,9 +21,9 @@ export function Wallet({ wallet, onClick }) {
     const shortenedWallet = `${wallet.substring(0, 4)}...${wallet.substring(wallet.length - 4)}`;
 
     return (
-        <div className="flex items-center justify-between min-w-fit bg-[#F8F8F8] rounded-xl text-black
+        <div className="flex items-center justify-between min-w-fit dark:bg-secondary bg-[#F8F8F8] rounded-xl text-black
              hover:bg-[#252ad0] hover:text-[#F8F8F8] transition-colors mb-4 p-4 max-h-9">
-            {windowWidth > 1100 ? (
+            {windowWidth > 1250 ? (
                 <div className="pl-3 text-xs font-semibold">{wallet}</div>
             ) : (
                 <div className="pl-3 text-xs font-semibold">{shortenedWallet}</div>

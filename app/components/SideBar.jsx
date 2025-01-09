@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from "@/contexts/authContext";
 import {  X } from 'lucide-react';
+import useToast from "@/hooks/useToast";
 
 const SidebarMenu = ({ isMenuOpen, toggleMenu }) => {
     const { setUser, user } = useAuth();
 
     async function logout() {
         try {
-            const response = await fetch('http://localhost:8080/api/auth/logout', {
+            const response = await fetch('http://localhost:8080/api/logout', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -23,6 +24,7 @@ const SidebarMenu = ({ isMenuOpen, toggleMenu }) => {
 
             setUser();
             toggleMenu();
+            window.location.reload();
             return true;
         } catch (error) {
             console.error('Logout error:', error);

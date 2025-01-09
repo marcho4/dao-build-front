@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/components/createCommunity.jsx"
+    "app/components/CreateCommunity.jsx"
   ],
   "exclude": [
     "node_modules"

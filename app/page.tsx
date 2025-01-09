@@ -1,8 +1,7 @@
 "use client";
 import Link from "next/link";
 import {FAQItem} from "@/app/components/FAQItem";
-import pageCard from "@/app/components/mainPageCard";
-import PageCard from "@/app/components/mainPageCard";
+import PageCard from "@/app/components/MainPageCard";
 
 export default function Home() {
   return (
@@ -20,9 +19,10 @@ export default function Home() {
             </p>
             <Link
                 href="/login"
-                className="inline-block px-8 py-4 bg-dark-secondary  text-black
+                className="inline-block px-8 py-4 bg-[#C9DDFF]  text-black
                 dark:bg-dark-primary dark:text-[#f8f8f8]
-                font-semibold text-lg rounded-md hover:bg-[#C2E812] hover:text-dark-primary transition-colors"
+                font-semibold text-lg rounded-md hover:bg-[#C2E812] hover:text-dark-primary
+                transition-all duration-300 ease-in-out  hover:-translate-x-1 hover:-translate-y-1"
             >
               Create community for free now
             </Link>
@@ -84,7 +84,7 @@ export default function Home() {
             <h2 className="text-4xl sm:text-6xl font-bold mb-12 ">Our plans</h2>
             <div className="grid lg:grid-cols-2 gap-20 select-none max-w-5xl w-full">
               <div
-                  className="bg-[#252AD0] border-t border-l border-b-4 border-r-4 border-black text-off-white
+                  className="bg-[#252AD0] text-off-white
                   min-w-full h-60 p-6 rounded-2xl text-3xl font-semibold flex flex-col items-center justify-center
                   transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-105">
                 <h3 className="text-2xl sm:text-3xl font-semibold mb-4">
@@ -95,7 +95,7 @@ export default function Home() {
                 </p>
               </div>
               <div
-                  className="bg-[#252AD0] border-t border-l border-b-4 border-r-4 border-black text-off-white
+                  className="bg-[#252AD0] text-off-white
                   w-full h-60 p-6 rounded-2xl text-3xl font-semibold flex flex-col items-center justify-center
                   transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-105">
                 <h3 className="text-2xl sm:text-3xl font-semibold mb-4">
@@ -140,16 +140,15 @@ export default function Home() {
             </h2>
 
             <Link href="/login">
-              <div className="bg-[#C2E812] border-t border-l border-b-4 border-r-4 border-gray-700 dark:border-black
-                   w-full h-40 p-6 rounded-2xl text-3xl font-semibold flex items-center justify-center dark:text-dark-primary
-                   transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-x-1 hover:-translate-y-1">
+              <div className="bg-[#C2E812] w-full h-40 p-6 rounded-2xl text-3xl font-semibold flex items-center
+              justify-center dark:text-dark-primary transition-all duration-300 ease-in-out hover:shadow-2xl
+              hover:-translate-x-1 hover:-translate-y-1">
                 Create account in 2 clicks
               </div>
             </Link>
 
           </section>
         </main>
-
       </div>
   );
 }

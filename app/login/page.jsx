@@ -1,6 +1,6 @@
 "use client"
 
-import WalletLogin from '../components/walletLogin';
+import WalletLogin from '../components/WalletLogin';
 
 export default function Page() {
     return (

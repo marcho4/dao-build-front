@@ -1,8 +1,8 @@
 export function Footer() {
   return (
     <footer>
-      <div className="w-full bg-[#F8F8F8] dark:bg-dark-primary flex flex-row p-6 items-center">
-        <div className="text-xl font-bold basis-1/2 select-none">
+      <div className="w-full bg-[#F8F8F8] dark:bg-dark-primary flex flex-row p-6 items-center mt-5 z-0">
+        <div className="text-xl font-bold basis-1/2 select-none ">
             © {new Date().getFullYear()} DAO.BUILD. All rights reserved.
         </div>
         {/*<nav className="basis-1/2 justify-end">*/}

@@ -30,7 +30,7 @@ export const FAQItem = ({question, answer}) => {
 
             </button>
             {show && (
-                <div className="p-4 mt-0 bg-[#C9DDFF] dark:text-dark-primary font-semibold text-left text-xl rounded-b-2xl min-w-full">
+                <div className="p-4 mt-0 bg-[#C9DDFF] dark:text-dark-primary text-left text-xl rounded-b-2xl min-w-full">
                     {answer}
                 </div>
             )}

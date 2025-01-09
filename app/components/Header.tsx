@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import SidebarMenu from "@/app/components/sideBar";
+import SidebarMenu from "@/app/components/SideBar";
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
